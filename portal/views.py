@@ -35,6 +35,23 @@ class PostsList2(ListView):
 
         return context
 
+class PostsList3(ListView):
+    model = Post  # указываем модель, объекты которой мы будем выводить
+    template_name = 'post3.html'
+# указываем имя шаблона, где будет лежать HTML, в котором будут все инструкции о том, как именно пользователю должны вывестись наши объекты
+    context_object_name = 'post3'
+# это имя списка, в котором будут лежать все объекты, его надо указать, чтобы обратиться к самому списку объектов через HTML-шаблон
+    queryset = Post.objects.order_by('-id')
+    paginate_by = 1
+    ordering = ['title']
+
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
+
+        return context
+
 
 
 class PostDetailView(DetailView):
