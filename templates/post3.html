@@ -1,7 +1,5 @@
 {% extends 'flatpages/default.html' %}
 
-
-
 {% block title %}
 Posts
 {% endblock title %}
@@ -13,8 +11,6 @@ Posts
 
 <br>
 <br>
-
-
         <table>
             <thead>
                 <td>
@@ -29,7 +25,6 @@ Posts
                 <td>
                     Текст
                 </td>
-
 
             </thead>
         {% for post in filter.qs %}
@@ -49,7 +44,6 @@ Posts
                 <td>
                     {{ post.text|truncatechars:20 }}
                 </td>
-
 
             </tr>
         {% endfor %}
